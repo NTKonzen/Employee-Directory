@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Wrapper from './components/Wrapper/Wrapper';
+import searchContext from "./utils/searchContext";
 
 function App() {
+
+  const [input, setInput] = useState(searchContext._currentValue);
+
+  useEffect(() => {
+    console.log(input)
+  }, [input])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <searchContext.Provider value={input}>
+        <Wrapper setInput={setInput}></Wrapper>
+      </searchContext.Provider>
     </div>
   );
 }
